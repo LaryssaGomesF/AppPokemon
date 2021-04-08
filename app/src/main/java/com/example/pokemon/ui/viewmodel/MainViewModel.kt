@@ -10,8 +10,5 @@ class MainViewModel(val repository: PokemonsRepository) : ViewModel() {
 
 
     fun fetchPokemons() {
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.fetchPokemons()
-        }
     }
 }
