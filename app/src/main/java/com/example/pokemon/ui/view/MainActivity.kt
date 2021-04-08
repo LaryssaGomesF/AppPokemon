@@ -17,7 +17,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setRecycler()
+        //setRecycler()
+        mainViewModel.fetchPokemons()
     }
 
     private fun setRecycler() {

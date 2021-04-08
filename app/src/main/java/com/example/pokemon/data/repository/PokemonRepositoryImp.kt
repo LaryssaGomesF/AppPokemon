@@ -1,13 +1,26 @@
 package com.example.pokemon.data.repository
 
-import com.example.pokemon.data.local.PokemonsDataBase
-import com.example.pokemon.data.remote.result.PokemonResult
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+
 
 class PokemonRepositoryImp(
-    val repositoryRemote: PokemonRepositoryRemote,
-    val database: PokemonsDataBase
-) :PokemonsRepository {
-    override fun fetchPokemons(): List<PokemonResult> {
-        TODO("Not yet implemented")
+    val repositoryRemote: PokemonsRepositoryRemoteImp
+) : PokemonsRepository {
+
+
+    override suspend fun fetchPokemons() {
+        GlobalScope.launch(Dispatchers.IO) {
+            repositoryRemote.fetchPokemons()
+                .catch { e ->
+
+                }.collect {
+                    val result = it
+                }
+        }
+
     }
 }
