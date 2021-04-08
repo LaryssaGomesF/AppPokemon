@@ -1,6 +1,7 @@
 package com.example.pokemon.data.local
 
 import androidx.room.*
+import com.example.pokemon.domain.model.PokemonModel
 
 @Dao
 interface PokemonDAO {
@@ -22,4 +23,13 @@ interface PokemonDAO {
 @Database(entities = [PokemonEntity::class, PokemonNameEntity::class], version = 1)
 abstract class PokemonsDataBase : RoomDatabase() {
     abstract fun pokemonDao(): PokemonDAO
+}
+
+fun List<PokemonNameEntity>.asDomainModel(): List<PokemonModel> {
+    return map {
+        PokemonModel(
+            name = it.name,
+            url = it.url
+        )
+    }
 }

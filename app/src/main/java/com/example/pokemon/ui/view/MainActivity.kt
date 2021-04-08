@@ -2,6 +2,7 @@ package com.example.pokemon.ui.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemon.R
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //setRecycler()
+
         mainViewModel.fetchPokemons()
     }
 
@@ -27,17 +28,14 @@ class MainActivity : AppCompatActivity() {
             GridLayoutManager(applicationContext, 2)
         recyclerView?.layoutManager = layout
         recyclerView?.setHasFixedSize(true)
-        var list = list()
-        adapter = PokemonListAdapter(list)
+        //adapter = PokemonListAdapter(list)
         recyclerView?.setItemViewCacheSize(10)
         recyclerView?.adapter = adapter
     }
 
-    private fun list(): ArrayList<String> {
-        var list: ArrayList<String> = arrayListOf()
-        for (i in 0..6) {
-            list.add("NOME")
-        }
-        return list
-    }
+   private fun observe(){
+       mainViewModel.success.observe(this, Observer {
+           mainViewModel.fetchPokemonInfo()
+       })
+   }
 }

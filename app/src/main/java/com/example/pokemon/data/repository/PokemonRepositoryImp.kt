@@ -2,9 +2,11 @@ package com.example.pokemon.data.repository
 
 
 import com.example.pokemon.data.local.PokemonsDataBase
+import com.example.pokemon.data.local.asDomainModel
 import com.example.pokemon.data.remote.result.ListPokemonResult
 import com.example.pokemon.data.remote.result.NameContainer
 import com.example.pokemon.data.remote.result.asDatabaseModel
+import com.example.pokemon.domain.model.PokemonModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 
@@ -33,8 +35,9 @@ class PokemonRepositoryImp(
 
     }
 
-    override suspend fun getPokemon() {
-
+    override suspend fun getPokemon(): List<PokemonModel> {
+        val result = database.pokemonDao().get().asDomainModel()
+        return result
     }
 
 }
