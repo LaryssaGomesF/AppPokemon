@@ -24,7 +24,7 @@ val modules = module {
         Room.databaseBuilder(get(), PokemonsDataBase::class.java, "pokemons_db")
             .fallbackToDestructiveMigration().build()
     }
-    factory<PokemonsRepository> { PokemonRepositoryImp(get()) }
+    factory<PokemonsRepository> { PokemonRepositoryImp(get(), get()) }
     factory { PokemonsRepositoryRemoteImp(APIListPokemon.apiService) }
 
 }

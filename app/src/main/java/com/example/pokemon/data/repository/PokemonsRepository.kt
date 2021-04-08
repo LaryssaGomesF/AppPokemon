@@ -6,4 +6,6 @@ import kotlin.Result
 interface PokemonsRepository {
 
     suspend fun fetchPokemons(listener: ResultAPI<ListPokemonResult>)
+
+    suspend fun getPokemon()
 }
