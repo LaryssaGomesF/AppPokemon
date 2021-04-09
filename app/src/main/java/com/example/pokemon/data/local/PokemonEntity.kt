@@ -9,10 +9,10 @@ import androidx.room.PrimaryKey
 class PokemonEntity(
     @PrimaryKey
     var name: String,
-    @ColumnInfo(name = "id") var id: String,
-    @ColumnInfo(name = "height") var height: String,
-    @ColumnInfo(name = "weight") var weight: String,
-    @ColumnInfo(name = "base_experience") var base_experience: String
+    @ColumnInfo(name = "id") var id: Int,
+    @ColumnInfo(name = "height") var height: Int,
+    @ColumnInfo(name = "weight") var weight: Int,
+    @ColumnInfo(name = "base_experience") var base_experience: Int
 )
 
 @Entity(tableName = "pokemonsname")

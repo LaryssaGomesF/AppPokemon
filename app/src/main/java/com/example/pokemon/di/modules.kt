@@ -25,6 +25,6 @@ val modules = module {
             .fallbackToDestructiveMigration().build()
     }
     factory<PokemonsRepository> { PokemonRepositoryImp(get(), get()) }
-    factory { PokemonsRepositoryRemoteImp(APIListPokemon.apiService) }
+    factory { PokemonsRepositoryRemoteImp(APIListPokemon.apiService, APIListPokemon.apiServiceInfo) }
 
 }

@@ -1,6 +1,7 @@
 package com.example.pokemon.data.remote
 
 import com.example.pokemon.data.remote.service.ListPokemonService
+import com.example.pokemon.data.remote.service.PokemonInfoService
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -12,6 +13,7 @@ class APIListPokemon {
         val httpClient = OkHttpClient.Builder().build()
 
         var apiService = connectionRetrofit().create(ListPokemonService::class.java)
+        var apiServiceInfo = connectionRetrofit().create(PokemonInfoService::class.java)
 
         private fun connectionRetrofit(): Retrofit {
             return Retrofit.Builder()

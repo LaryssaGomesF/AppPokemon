@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
    private fun observe(){
        mainViewModel.success.observe(this, Observer {
-           mainViewModel.fetchPokemonInfo()
+
        })
    }
 }

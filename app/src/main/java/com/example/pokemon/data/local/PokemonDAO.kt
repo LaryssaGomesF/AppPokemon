@@ -20,7 +20,7 @@ interface PokemonDAO {
 
 }
 
-@Database(entities = [PokemonEntity::class, PokemonNameEntity::class], version = 1)
+@Database(entities = [PokemonEntity::class, PokemonNameEntity::class], version = 2)
 abstract class PokemonsDataBase : RoomDatabase() {
     abstract fun pokemonDao(): PokemonDAO
 }
