@@ -1,5 +1,6 @@
 package com.example.pokemon.ui.adapter
 
+import android.app.Activity
 import android.icu.number.NumberFormatter.with
 import android.icu.number.NumberRangeFormatter.with
 import android.view.LayoutInflater
@@ -7,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemon.R
 import com.example.pokemon.domain.model.PokemonModel
+import com.example.pokemon.ui.view.MainActivity
 import com.squareup.picasso.Picasso
 
 class PokemonListAdapter(var list: List<PokemonModel>) : RecyclerView.Adapter<PokemonHolder>() {
@@ -25,6 +28,9 @@ class PokemonListAdapter(var list: List<PokemonModel>) : RecyclerView.Adapter<Po
         holder.name.text = list.get(position).name
         val image = holder.image
         Picasso.get().load(url).into(image)
+        holder.itemView.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.info_action)
+        }
 
     }
 
@@ -34,6 +40,9 @@ class PokemonListAdapter(var list: List<PokemonModel>) : RecyclerView.Adapter<Po
 }
 
 class PokemonHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
     var image: ImageView = itemView.findViewById(R.id.image_pokemon)
     var name: TextView = itemView.findViewById(R.id.name_pokemon)
+
+
 }
