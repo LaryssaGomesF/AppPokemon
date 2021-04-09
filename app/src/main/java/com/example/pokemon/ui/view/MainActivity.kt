@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         recyclerView?.layoutManager = layout
         recyclerView?.setHasFixedSize(true)
         adapter = PokemonListAdapter(list)
-        recyclerView?.setItemViewCacheSize(10)
         recyclerView?.adapter = adapter
     }
 
