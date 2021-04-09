@@ -6,15 +6,14 @@ import com.example.pokemon.data.remote.APIListPokemon
 import com.example.pokemon.data.repository.PokemonRepositoryImp
 import com.example.pokemon.data.repository.PokemonsRepository
 import com.example.pokemon.data.repository.PokemonsRepositoryRemoteImp
-import com.example.pokemon.ui.view.SplashActivity
-import com.example.pokemon.ui.viewmodel.MainViewModel
+import com.example.pokemon.ui.viewmodel.ListFragmentViewModel
 import com.example.pokemon.ui.viewmodel.SplashViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val modules = module {
     viewModel {
-        MainViewModel(get(), get())
+        ListFragmentViewModel(get(), get())
     }
     viewModel {
         SplashViewModel(get())

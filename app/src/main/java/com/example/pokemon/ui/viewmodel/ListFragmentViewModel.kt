@@ -14,7 +14,7 @@ import com.example.pokemon.domain.model.PokemonModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MainViewModel(val repository: PokemonsRepository, dataBase: PokemonsDataBase) : ViewModel() {
+class ListFragmentViewModel(val repository: PokemonsRepository, dataBase: PokemonsDataBase) : ViewModel() {
 
     var list: LiveData<List<PokemonEntity>> = dataBase.pokemonDao().getAll()
 
