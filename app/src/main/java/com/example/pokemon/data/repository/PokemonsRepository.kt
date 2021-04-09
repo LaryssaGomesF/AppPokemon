@@ -8,5 +8,5 @@ interface PokemonsRepository {
 
     suspend fun fetchPokemons(listener: ResultAPI<ListPokemonResult>)
 
-    suspend fun getPokemon(listener: ResultAPI<InfoPokemon>)
+    suspend fun getPokemon()
 }

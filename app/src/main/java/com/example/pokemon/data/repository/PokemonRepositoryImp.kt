@@ -35,14 +35,13 @@ class PokemonRepositoryImp(
 
     }
 
-    override suspend fun getPokemon(listener: ResultAPI<InfoPokemon>) {
+    override suspend fun getPokemon() {
         val namelist = database.pokemonDao().get().asDomainModel()
         GlobalScope.launch(Dispatchers.IO) {
             repositoryRemote.fetchPokemonsInfo(namelist)
                 .catch { e ->
 
                 }.collect {
-                    listener.onSuccess(it)
                     database.pokemonDao().add(it.asDatabaseModel())
                 }
         }

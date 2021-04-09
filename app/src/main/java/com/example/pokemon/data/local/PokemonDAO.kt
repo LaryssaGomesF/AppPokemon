@@ -1,5 +1,6 @@
 package com.example.pokemon.data.local
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.pokemon.domain.model.PokemonModel
 
@@ -13,7 +14,7 @@ interface PokemonDAO {
     suspend fun addname(entities: List<PokemonNameEntity>)
 
     @Query("SELECT * FROM pokemons")
-    suspend fun getAll(): List<PokemonEntity>
+    fun getAll(): LiveData<List<PokemonEntity>>
 
     @Query("SELECT * FROM pokemonsname")
     suspend fun get(): List<PokemonNameEntity>
@@ -30,6 +31,19 @@ fun List<PokemonNameEntity>.asDomainModel(): List<PokemonModel> {
         PokemonModel(
             name = it.name,
             url = it.url
+        )
+    }
+}
+
+fun List<PokemonEntity>.asDomainModelList(): List<PokemonModel> {
+    return map {
+        PokemonModel(
+            name = it.name,
+            id = it.id,
+            weight = it.weight,
+            height = it.height,
+            base_experience = it.base_experience,
+            url = ""
         )
     }
 }

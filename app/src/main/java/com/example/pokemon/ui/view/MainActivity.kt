@@ -6,6 +6,8 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemon.R
+import com.example.pokemon.data.local.asDomainModelList
+import com.example.pokemon.domain.model.PokemonModel
 import com.example.pokemon.ui.adapter.PokemonListAdapter
 import com.example.pokemon.ui.viewmodel.MainViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -20,22 +22,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mainViewModel.fetchPokemons()
+        observe()
     }
 
-    private fun setRecycler() {
+    private fun setRecycler(list: List<PokemonModel>) {
         recyclerView = findViewById(R.id.recycler)
         val layout =
             GridLayoutManager(applicationContext, 2)
         recyclerView?.layoutManager = layout
         recyclerView?.setHasFixedSize(true)
-        //adapter = PokemonListAdapter(list)
+        adapter = PokemonListAdapter(list)
         recyclerView?.setItemViewCacheSize(10)
         recyclerView?.adapter = adapter
     }
 
-   private fun observe(){
-       mainViewModel.success.observe(this, Observer {
-
+   private fun observe() {
+       mainViewModel.list.observe(this, Observer {
+           setRecycler(it.asDomainModelList())
        })
    }
 }
