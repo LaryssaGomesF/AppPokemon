@@ -16,6 +16,9 @@ interface PokemonDAO {
     @Query("SELECT * FROM pokemons")
     fun getAll(): LiveData<List<PokemonEntity>>
 
+    @Query("SELECT * FROM pokemons WHERE id in (:id)")
+    fun getpokemon(id: String): PokemonEntity
+
     @Query("SELECT * FROM pokemonsname")
     suspend fun get(): List<PokemonNameEntity>
 
@@ -46,4 +49,16 @@ fun List<PokemonEntity>.asDomainModelList(): List<PokemonModel> {
             url = ""
         )
     }
+}
+
+fun PokemonEntity.asDomainModel(): PokemonModel {
+    return PokemonModel(
+            name = name,
+            id = id,
+            weight = weight,
+            height = height,
+            base_experience = base_experience,
+            url = ""
+        )
+
 }

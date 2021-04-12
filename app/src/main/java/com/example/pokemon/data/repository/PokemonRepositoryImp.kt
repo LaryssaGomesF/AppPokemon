@@ -1,6 +1,7 @@
 package com.example.pokemon.data.repository
 
 
+import com.example.pokemon.data.local.PokemonEntity
 import com.example.pokemon.data.local.PokemonsDataBase
 import com.example.pokemon.data.local.asDomainModel
 import com.example.pokemon.data.remote.result.InfoPokemon
@@ -9,9 +10,11 @@ import com.example.pokemon.data.remote.result.NameContainer
 import com.example.pokemon.data.remote.result.asDatabaseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.Flow
 
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
 
@@ -44,6 +47,17 @@ class PokemonRepositoryImp(
                 }.collect {
                     database.pokemonDao().add(it.asDatabaseModel())
                 }
+        }
+    }
+
+    override suspend fun fetchPokemonInfo(id: String): Flow<PokemonEntity> {
+        return flow {
+            try {
+                val pokemon = database.pokemonDao().getpokemon(id)
+                emit(pokemon)
+            } catch (e: Exception) {
+                throw Exception(e.message)
+            }
         }
     }
 

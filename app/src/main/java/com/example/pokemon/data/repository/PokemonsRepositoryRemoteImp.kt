@@ -9,9 +9,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 
-class PokemonsRepositoryRemoteImp(val service: ListPokemonService, val serviceinfo: PokemonInfoService) : PokemonRepositoryRemote {
+class PokemonsRepositoryRemoteImp(val service: ListPokemonService, val serviceinfo: PokemonInfoService)  {
 
-    override fun fetchPokemons(): Flow<ListPokemonResult> {
+   fun fetchPokemons(): Flow<ListPokemonResult> {
         return flow {
             try {
                 val result = service.list()
@@ -22,7 +22,7 @@ class PokemonsRepositoryRemoteImp(val service: ListPokemonService, val servicein
         }
     }
 
-    override fun fetchPokemonsInfo(listname: List<PokemonModel>): Flow<InfoPokemon> {
+    fun fetchPokemonsInfo(listname: List<PokemonModel>): Flow<InfoPokemon> {
         return flow {
             try {
                 for (i in listname){
