@@ -12,11 +12,23 @@
         tools:layout="@layout/fragment_list">
         <action
             android:id="@+id/info_action"
-            app:destination="@id/detailsFragment" />
+            app:destination="@id/detailsFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.pokemon.ui.view.DetailsFragment"
         android:label="DetailsFragment"
-        tools:layout="@layout/fragment_details"/>
+        tools:layout="@layout/fragment_details">
+        <argument
+            android:name="id"
+            android:defaultValue=""
+            app:argType="string" />
+
+    </fragment>
+
 </navigation>

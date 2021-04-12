@@ -1,18 +1,19 @@
 package com.example.pokemon.ui.adapter
 
-import android.app.Activity
-import android.icu.number.NumberFormatter.with
-import android.icu.number.NumberRangeFormatter.with
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.Navigation
+import androidx.core.view.ViewCompat
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemon.R
 import com.example.pokemon.domain.model.PokemonModel
-import com.example.pokemon.ui.view.MainActivity
+import com.example.pokemon.ui.view.ListFragmentDirections
+
 import com.squareup.picasso.Picasso
 
 class PokemonListAdapter(var list: List<PokemonModel>) : RecyclerView.Adapter<PokemonHolder>() {
@@ -29,7 +30,12 @@ class PokemonListAdapter(var list: List<PokemonModel>) : RecyclerView.Adapter<Po
         val image = holder.image
         Picasso.get().load(url).into(image)
         holder.itemView.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.info_action)
+            val id = list.get(position).id.toString()
+            val direction = ListFragmentDirections.infoAction(id)
+            ViewCompat.setTransitionName(it, "image${list.get(position).id}")
+            val extras = FragmentNavigatorExtras(holder.itemView to  "image${list.get(position).id}")
+            it.findNavController().navigate(direction, extras)
+
         }
 
     }
@@ -43,6 +49,9 @@ class PokemonHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     var image: ImageView = itemView.findViewById(R.id.image_pokemon)
     var name: TextView = itemView.findViewById(R.id.name_pokemon)
+
+
+
 
 
 }
