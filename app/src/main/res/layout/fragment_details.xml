@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/background_fragment"
     android:background="@color/light_color"
     xmlns:tools="http://schemas.android.com/tools">
 

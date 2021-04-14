@@ -13,10 +13,7 @@
         <action
             android:id="@+id/info_action"
             app:destination="@id/detailsFragment"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
+           />
 
     </fragment>
     <fragment
@@ -28,7 +25,12 @@
             android:name="id"
             android:defaultValue=""
             app:argType="string" />
-
+        <argument
+            android:name="colorlight"
+            app:argType="integer" />
+        <argument
+            android:name="colordark"
+            app:argType="integer" />
     </fragment>
 
 </navigation>
