@@ -67,6 +67,8 @@ class DetailsFragment : Fragment() {
             weight?.text = pokemon.weight.toString() + "Kg"
             val name = view?.findViewById<TextView>(R.id.name)
             name?.text = pokemon.name
+            val base = view?.findViewById<TextView>(R.id.base_experiencenumber)
+            base?.text = pokemon.base_experience.toString()
 
         })
     }
