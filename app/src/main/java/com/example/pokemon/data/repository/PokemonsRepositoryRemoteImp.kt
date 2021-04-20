@@ -1,6 +1,6 @@
 package com.example.pokemon.data.repository
 
-import com.example.pokemon.data.remote.result.InfoPokemon
+import com.example.pokemon.data.local.PokemonEntity
 import com.example.pokemon.data.remote.result.ListPokemonResult
 import com.example.pokemon.data.remote.service.ListPokemonService
 import com.example.pokemon.data.remote.service.PokemonInfoService
@@ -22,7 +22,7 @@ class PokemonsRepositoryRemoteImp(val service: ListPokemonService, val servicein
         }
     }
 
-    fun fetchPokemonsInfo(listname: List<PokemonModel>): Flow<InfoPokemon> {
+    fun fetchPokemonsInfo(listname: List<PokemonModel>): Flow<PokemonEntity> {
         return flow {
             try {
                 for (i in listname){

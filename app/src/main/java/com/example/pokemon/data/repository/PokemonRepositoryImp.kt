@@ -4,7 +4,6 @@ package com.example.pokemon.data.repository
 import com.example.pokemon.data.local.PokemonEntity
 import com.example.pokemon.data.local.PokemonsDataBase
 import com.example.pokemon.data.local.asDomainModel
-import com.example.pokemon.data.remote.result.InfoPokemon
 import com.example.pokemon.data.remote.result.ListPokemonResult
 import com.example.pokemon.data.remote.result.NameContainer
 import com.example.pokemon.data.remote.result.asDatabaseModel
@@ -21,10 +20,10 @@ import kotlinx.coroutines.launch
 class PokemonRepositoryImp(
     val repositoryRemote: PokemonsRepositoryRemoteImp,
     val database: PokemonsDataBase
-) : PokemonsRepository {
+) {
 
 
-    override suspend fun fetchPokemons(listener: ResultAPI<ListPokemonResult>) {
+    suspend fun fetchPokemons(listener: ResultAPI<ListPokemonResult>) {
         GlobalScope.launch(Dispatchers.IO) {
             repositoryRemote.fetchPokemons()
                 .catch { e ->
@@ -38,19 +37,19 @@ class PokemonRepositoryImp(
 
     }
 
-    override suspend fun getPokemon() {
+    suspend fun getPokemon() {
         val namelist = database.pokemonDao().get().asDomainModel()
         GlobalScope.launch(Dispatchers.IO) {
             repositoryRemote.fetchPokemonsInfo(namelist)
                 .catch { e ->
 
                 }.collect {
-                    database.pokemonDao().add(it.asDatabaseModel())
+                    database.pokemonDao().add(it)
                 }
         }
     }
 
-    override suspend fun fetchPokemonInfo(id: String): Flow<PokemonEntity> {
+    suspend fun fetchPokemonInfo(id: String): Flow<PokemonEntity> {
         return flow {
             try {
                 val pokemon = database.pokemonDao().getpokemon(id)

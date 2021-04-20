@@ -18,7 +18,9 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
+    buildFeatures{
+        dataBinding = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -91,4 +93,7 @@ dependencies {
 
     //palette
     implementation "androidx.palette:palette-ktx:1.0.0"
+
+    //databinding
+    kapt "com.android.databinding:compiler:4.0.0"
 }

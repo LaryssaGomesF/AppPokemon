@@ -4,7 +4,6 @@ import androidx.room.Room
 import com.example.pokemon.data.local.PokemonsDataBase
 import com.example.pokemon.data.remote.APIListPokemon
 import com.example.pokemon.data.repository.PokemonRepositoryImp
-import com.example.pokemon.data.repository.PokemonsRepository
 import com.example.pokemon.data.repository.PokemonsRepositoryRemoteImp
 import com.example.pokemon.ui.viewmodel.DetailsFragmentViewModel
 import com.example.pokemon.ui.viewmodel.ListFragmentViewModel
@@ -27,7 +26,7 @@ val modules = module {
         Room.databaseBuilder(get(), PokemonsDataBase::class.java, "pokemons_db")
             .fallbackToDestructiveMigration().build()
     }
-    factory<PokemonsRepository> { PokemonRepositoryImp(get(), get()) }
+    factory { PokemonRepositoryImp(get(), get()) }
     factory { PokemonsRepositoryRemoteImp(APIListPokemon.apiService, APIListPokemon.apiServiceInfo) }
 
 }

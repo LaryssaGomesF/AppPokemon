@@ -4,14 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokemon.data.remote.result.ListPokemonResult
-import com.example.pokemon.data.repository.PokemonsRepository
+import com.example.pokemon.data.repository.PokemonRepositoryImp
 import com.example.pokemon.data.repository.ResultAPI
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class SplashViewModel(val repository: PokemonsRepository) : ViewModel() {
+class SplashViewModel(val repository: PokemonRepositoryImp) : ViewModel() {
 
     val success: MutableLiveData<ListPokemonResult> = MutableLiveData()
 
