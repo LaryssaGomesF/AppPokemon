@@ -20,8 +20,9 @@ class DetailsFragment : Fragment() {
     lateinit var id: String
     var colorlight: Int? = null
     var colordark: Int?= null
-
     private val detailsViewModel by viewModel<DetailsFragmentViewModel>()
+    private lateinit var binding: FragmentDetailsBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,7 +30,7 @@ class DetailsFragment : Fragment() {
     ): View? {
         val shared = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
         sharedElementEnterTransition = shared
-        val binding: FragmentDetailsBinding = FragmentDetailsBinding.inflate(inflater,container, false)
+        binding = FragmentDetailsBinding.inflate(inflater,container, false)
         binding.apply {
             lifecycleOwner = viewLifecycleOwner
             viewModel = this@DetailsFragment.detailsViewModel
@@ -50,13 +51,10 @@ class DetailsFragment : Fragment() {
 
     private fun setLayout() {
         detailsViewModel.fetchPokemon(id)
-        val image = view?.findViewById<ImageView>(R.id.image_pokemon)
         val url = "https://pokeres.bastionbot.org/images/pokemon/" + id + ".png"
-        Picasso.get().load(url).into(image)
-        val backgroundinfo : View? = view?.findViewById(R.id.background_info)
-        colordark?.let { backgroundinfo?.background?.setTint(it) }
-        val background : ConstraintLayout? = view?.findViewById(R.id.background_fragment)
-        colorlight?.let { background?.setBackgroundColor(it) }
+        Picasso.get().load(url).into(binding.imagePokemon)
+        colordark?.let { binding.backgroundInfo.background.setTint(it) }
+        colorlight?.let { binding.backgroundFragment.background?.setTint(it) }
 
     }
 
