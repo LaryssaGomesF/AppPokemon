@@ -14,46 +14,50 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemon.R
 import com.example.pokemon.data.local.PokemonEntity
 import com.example.pokemon.data.local.asDomainModelList
+import com.example.pokemon.databinding.FragmentDetailsBinding
+import com.example.pokemon.databinding.FragmentListBinding
 import com.example.pokemon.domain.model.PokemonModel
 import com.example.pokemon.ui.adapter.PokemonListAdapter
 import com.example.pokemon.ui.viewmodel.ListFragmentViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class ListFragment: Fragment() {
-    private var recyclerView: RecyclerView? = null
-    private var adapter: PokemonListAdapter? = null
-    private val mainViewModel by viewModel<ListFragmentViewModel>()
+class ListFragment : Fragment() {
+    private lateinit var binding: FragmentListBinding
+    private val ListViewModel by viewModel<ListFragmentViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_list, container, false)
+        binding = FragmentListBinding.inflate(inflater, container, false)
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = ListViewModel
+        }
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainViewModel.fetchPokemons()
+        ListViewModel.fetchPokemons()
         observe()
     }
 
     private fun setRecycler(list: List<PokemonEntity>) {
-        recyclerView = view?.findViewById(R.id.recycler)
         val layout =
             GridLayoutManager(requireContext(), 2)
-        recyclerView?.layoutManager = layout
-        recyclerView?.setHasFixedSize(true)
-        adapter = PokemonListAdapter(list)
-        recyclerView?.adapter = adapter
+        binding.recycler.apply {
+            layoutManager = layout
+            setHasFixedSize(true)
+            adapter = PokemonListAdapter(list)
+        }
     }
 
     private fun observe() {
-        mainViewModel.list.observe(requireActivity(), Observer {
+        ListViewModel.list.observe(requireActivity(), Observer {
             setRecycler(it)
         })
     }
-
-
 
 
 }
