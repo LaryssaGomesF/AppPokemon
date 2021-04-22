@@ -18,8 +18,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    buildFeatures{
-        dataBinding = true
+    dataBinding {
+        enabled true
     }
     buildTypes {
         release {
@@ -95,5 +95,5 @@ dependencies {
     implementation "androidx.palette:palette-ktx:1.0.0"
 
     //databinding
-    kapt "com.android.databinding:compiler:4.0.0"
+    kapt "com.android.databinding:compiler:3.0.0"
 }

@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemon.R
+import com.example.pokemon.data.local.PokemonEntity
 import com.example.pokemon.data.local.asDomainModelList
 import com.example.pokemon.domain.model.PokemonModel
 import com.example.pokemon.ui.adapter.PokemonListAdapter
@@ -36,7 +37,7 @@ class ListFragment: Fragment() {
         observe()
     }
 
-    private fun setRecycler(list: List<PokemonModel>) {
+    private fun setRecycler(list: List<PokemonEntity>) {
         recyclerView = view?.findViewById(R.id.recycler)
         val layout =
             GridLayoutManager(requireContext(), 2)
@@ -48,7 +49,7 @@ class ListFragment: Fragment() {
 
     private fun observe() {
         mainViewModel.list.observe(requireActivity(), Observer {
-            setRecycler(it.asDomainModelList())
+            setRecycler(it)
         })
     }
 
