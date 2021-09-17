@@ -3,8 +3,8 @@ package com.example.pokemon.di
 import androidx.room.Room
 import com.example.pokemon.data.local.PokemonsDataBase
 import com.example.pokemon.data.remote.APIListPokemon
+import com.example.pokemon.data.remote.repository.PokemonRepositoryImp
 import com.example.pokemon.data.remote.service.PokemonServiceImp
-import com.example.pokemon.data.remote.repository.PokemonRepositoryRemoteImp
 import com.example.pokemon.ui.viewmodel.DetailsFragmentViewModel
 import com.example.pokemon.ui.viewmodel.ListFragmentViewModel
 import com.example.pokemon.ui.viewmodel.SplashViewModel
@@ -13,7 +13,7 @@ import org.koin.dsl.module
 
 val modules = module {
     viewModel {
-        ListFragmentViewModel(get())
+        ListFragmentViewModel(get(), get())
     }
     viewModel {
         SplashViewModel(get())
@@ -27,7 +27,7 @@ val modules = module {
             .fallbackToDestructiveMigration().build()
     }
 
-    factory { PokemonRepositoryRemoteImp(get()) }
+    factory { PokemonRepositoryImp(get()) }
     factory { PokemonServiceImp(APIListPokemon.apiService) }
 
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.example.pokemon.R
 import com.example.pokemon.databinding.FragmentDetailsBinding
@@ -46,6 +47,7 @@ class DetailsFragment : Fragment() {
         colordark = safeArgs.colordark
         ViewCompat.setTransitionName(view?.findViewById(R.id.image_pokemon), "image${id}")
         setLayout()
+        observe()
 
     }
 
@@ -55,6 +57,14 @@ class DetailsFragment : Fragment() {
         colordark?.let { binding.backgroundInfo.background.setTint(it) }
         colorlight?.let { binding.backgroundFragment.background?.setTint(it) }
 
+
+    }
+    fun observe(){
+        detailsViewModel.pokemon.observe(viewLifecycleOwner, Observer {
+            binding.progressBarBaseExperience.progress = it.baseExp.toInt()
+            binding.progressBarSpeed.progress = it.speed
+            binding.progressBarSpeed.progress = it.speed
+        })
     }
 
 

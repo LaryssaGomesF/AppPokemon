@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 
-class PokemonRepositoryRemoteImp(val pokemonService: PokemonServiceImp) : PokemonRepositoryRemote {
+class PokemonRepositoryImp(val pokemonService: PokemonServiceImp) : PokemonRepository {
 
     override suspend fun getPokemon(): Flow<List<PokemonSafe>> =
         pokemonService.getPokemonList().map { list ->

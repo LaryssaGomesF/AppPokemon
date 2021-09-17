@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.example.pokemon.ui.viewmodel.DetailsFragmentViewModel" />
@@ -41,13 +42,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="20dp"
-            android:text="@={viewModel.pokemon.name}"
+            android:text="@{String.valueOf(viewModel.pokemon.name)}"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guideline2" />
+            app:layout_constraintTop_toBottomOf="@id/guideline2"
+            />
 
 
         <TextView
@@ -59,8 +61,8 @@
             android:textColor="@color/white"
             android:textSize="35sp"
             android:textStyle="bold"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/center_horizontal"
             app:layout_constraintTop_toBottomOf="@+id/name" />
 
 
@@ -70,25 +72,25 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="10dp"
-            android:text="Peso"
+            android:text="@string/weight"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintRight_toRightOf="@id/center_horizontal"
             app:layout_constraintTop_toBottomOf="@+id/weight_number" />
 
         <TextView
             android:id="@+id/height_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="40dp"
             android:text="@{String.valueOf(viewModel.pokemon.height)}"
             android:textColor="@color/white"
             android:textSize="35sp"
             android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/center_horizontal"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weight" />
+            app:layout_constraintTop_toBottomOf="@+id/name" />
 
         <TextView
             android:id="@+id/height"
@@ -96,40 +98,63 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="25dp"
             android:layout_marginVertical="10dp"
-            android:text="Altura"
+            android:text="@string/height"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/center_horizontal"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/height_number" />
 
 
         <TextView
-            android:id="@+id/base_experiencenumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="20dp"
-            android:layout_marginTop="100dp"
-            android:text="@{String.valueOf(viewModel.pokemon.baseExp)}"
-            android:textColor="@color/white"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/height" />
-
-        <TextView
             android:id="@+id/base_experience"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="40dp"
             android:layout_marginTop="76dp"
-            android:text="Experiência básica"
+            android:text="@string/base_exp"
             android:textColor="@color/white"
             android:textSize="16sp"
-            app:layout_constraintLeft_toLeftOf="@+id/base_experiencenumber"
-            app:layout_constraintRight_toRightOf="@+id/base_experiencenumber"
-            app:layout_constraintTop_toBottomOf="@+id/base_experiencenumber" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/height" />
+
+        <ProgressBar
+            android:id="@+id/progressBar_base_experience"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:progressDrawable="@drawable/background_progress_bar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/base_experience" />
+
+        <TextView
+            android:id="@+id/speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="40dp"
+            android:layout_marginTop="76dp"
+            android:text="@string/speed"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar_base_experience" />
+
+
+        <ProgressBar
+            android:id="@+id/progressBar_speed"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:progressDrawable="@drawable/background_progress_bar"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/speed" />
+
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
@@ -137,6 +162,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.4" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

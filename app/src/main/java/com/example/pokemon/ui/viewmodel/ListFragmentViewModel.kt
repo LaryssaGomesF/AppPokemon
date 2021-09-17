@@ -4,15 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.pokemon.data.local.PokemonsDataBase
+import com.example.pokemon.data.local.asListPokemonEntity
+import com.example.pokemon.data.remote.repository.PokemonRepositoryImp
 import com.example.pokemon.data.remote.result.PokemonSafe
-import com.example.pokemon.data.remote.repository.PokemonRepositoryRemoteImp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class ListFragmentViewModel(
-    var repositoryPokemon: PokemonRepositoryRemoteImp
+    var repositoryPokemon: PokemonRepositoryImp,
+    var repositoryLocal: PokemonsDataBase
 ) : ViewModel() {
 
     private var mSuccessListPokemon: MutableLiveData<List<PokemonSafe>> = MutableLiveData()
@@ -28,6 +31,7 @@ class ListFragmentViewModel(
                    mErrorListPokemon.postValue(false)
                 }.collect {
                     mSuccessListPokemon.postValue(it)
+                    repositoryLocal.pokemonDao().add(it.asListPokemonEntity())
                 }
         }
     }

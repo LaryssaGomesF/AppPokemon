@@ -4,9 +4,9 @@ package com.example.pokemon.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.pokemon.data.remote.repository.PokemonRepositoryRemoteImp
+import com.example.pokemon.data.remote.repository.PokemonRepositoryImp
 
-class SplashViewModel(var repositoryPokemon: PokemonRepositoryRemoteImp) : ViewModel() {
+class SplashViewModel(var repositoryPokemon: PokemonRepositoryImp) : ViewModel() {
 
     private var mSuccessConnection: MutableLiveData<Boolean> = MutableLiveData()
     var successConnection: LiveData<Boolean> = mSuccessConnection
