@@ -8,4 +8,4 @@ Technologies such as:
 - Jetpack's Navigation is used for animation between the pokemon list screen and details of each pokemon
 - Room.
 
-![Alt text](https://github.com/LaryssaGomesF/AppPokemon/blob/feature/%232/app/src/main/res/drawable/screenshot_detail.jpeg "Screenshot Detail" |width=100)
+![Alt text](https://github.com/LaryssaGomesF/AppPokemon/blob/feature/%232/app/src/main/res/drawable/screenshot_detail.jpeg "Screenshot Detail" | width=100)
