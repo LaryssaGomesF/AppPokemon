@@ -26,7 +26,7 @@ class ListFragmentViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             repositoryPokemon.getPokemon()
                 .catch {
-                    it.message
+                   mErrorListPokemon.postValue(false)
                 }.collect {
                     mSuccessListPokemon.postValue(it)
                 }

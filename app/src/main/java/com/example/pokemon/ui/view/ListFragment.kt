@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -58,6 +59,10 @@ class ListFragment : Fragment() {
     private fun observe() {
         ListViewModel.successListPokemon.observe(viewLifecycleOwner, Observer {
             setRecycler(it)
+        })
+        ListViewModel.errorListPokemon.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(requireContext(), "Error para carregar pokemons", Toast.LENGTH_SHORT)
+                .show()
         })
     }
 
