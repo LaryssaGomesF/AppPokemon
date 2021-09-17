@@ -13,9 +13,7 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemon.R
-import com.example.pokemon.data.local.PokemonEntity
-import com.example.pokemon.data.remote.PokemonRaw
-import com.example.pokemon.data.remote.PokemonSafe
+import com.example.pokemon.data.remote.result.PokemonSafe
 import com.example.pokemon.databinding.ItemRecyclerBinding
 import com.example.pokemon.ui.view.ListFragmentDirections
 import com.squareup.picasso.Callback

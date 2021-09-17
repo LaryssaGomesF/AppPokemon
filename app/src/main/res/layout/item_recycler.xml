@@ -8,7 +8,7 @@
 
         <variable
             name="pokemon"
-            type="com.example.pokemon.data.remote.PokemonSafe" />
+            type="com.example.pokemon.data.remote.result.PokemonSafe" />
 
         <import type="android.view.View" />
 

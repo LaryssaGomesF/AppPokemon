@@ -14,12 +14,12 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        splashViewModel.fetchPokemon()
+        splashViewModel.checkConnection()
         observe()
     }
 
     private fun observe() {
-        splashViewModel.success.observe(this, Observer {
+        splashViewModel.successConnection.observe(this, Observer {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         })

@@ -1,7 +1,7 @@
 package com.example.pokemon.data.repository
 
-import com.example.pokemon.data.remote.PokemonSafe
-import com.example.pokemon.data.remote.result.PokemonServiceImp
+import com.example.pokemon.data.remote.result.PokemonSafe
+import com.example.pokemon.data.remote.service.PokemonServiceImp
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 

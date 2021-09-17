@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pokemon.data.remote.PokemonRaw
-import com.example.pokemon.data.remote.PokemonSafe
+import com.example.pokemon.data.remote.result.PokemonSafe
 import com.example.pokemon.data.repository.PokemonRepositoryRemoteImp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.catch

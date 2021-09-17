@@ -14,18 +14,16 @@ import kotlinx.coroutines.launch
 
 class SplashViewModel(var repositoryPokemon: PokemonRepositoryRemoteImp) : ViewModel() {
 
-    private var mSuccess: MutableLiveData<Boolean> = MutableLiveData()
-    var success: LiveData<Boolean> = mSuccess
-    fun fetchPokemon() {
-//        viewModelScope.launch(Dispatchers.IO) {
-//            repositoryPokemon.getPokemon()
-//                .catch {
-//
-//                }.collect {
-//
-//                }
-//        }
-        mSuccess.value = true
+    private var mSuccessConnection: MutableLiveData<Boolean> = MutableLiveData()
+    var successConnection: LiveData<Boolean> = mSuccessConnection
+
+    fun checkConnection() {
+
+        mSuccessConnection.value = true
+
+    }
+
+    fun checkDataBase(){
 
     }
 }

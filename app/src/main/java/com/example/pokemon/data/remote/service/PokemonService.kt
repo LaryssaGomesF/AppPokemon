@@ -1,6 +1,6 @@
-package com.example.pokemon.data.remote.result
+package com.example.pokemon.data.remote.service
 
-import com.example.pokemon.data.remote.PokemonRaw
+import com.example.pokemon.data.remote.result.PokemonRaw
 import kotlinx.coroutines.flow.Flow
 
 interface PokemonService {

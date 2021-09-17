@@ -1,4 +1,4 @@
-package com.example.pokemon.data.remote
+package com.example.pokemon.data.remote.result
 
 import com.example.pokemon.data.Raw
 
