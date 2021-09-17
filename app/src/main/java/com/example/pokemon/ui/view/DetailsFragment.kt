@@ -63,7 +63,9 @@ class DetailsFragment : Fragment() {
         detailsViewModel.pokemon.observe(viewLifecycleOwner, Observer {
             binding.progressBarBaseExperience.progress = it.baseExp.toInt()
             binding.progressBarSpeed.progress = it.speed
-            binding.progressBarSpeed.progress = it.speed
+            binding.progressBarAtack.progress = it.attack
+            binding.progressBarDefense.progress = it.defense
+
         })
     }
 

@@ -5,4 +5,6 @@
     <string name="weight">Peso</string>
     <string name="base_exp">Experiência básica</string>
     <string name="speed">Velocidade</string>
+    <string name="atacck">Ataque</string>
+    <string name="defense">Defesa</string>
 </resources>
