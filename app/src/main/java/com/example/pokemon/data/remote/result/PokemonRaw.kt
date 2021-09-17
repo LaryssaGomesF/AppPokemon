@@ -1,6 +1,7 @@
 package com.example.pokemon.data.remote.result
 
 import com.example.pokemon.data.Raw
+import com.google.gson.annotations.SerializedName
 
 class PokemonRaw(
     val name: String?,
@@ -13,7 +14,8 @@ class PokemonRaw(
     val attack: Int,
     val defense: Int,
     val speed: Int,
-    val base_exp: String?
+    @SerializedName("base_exp")
+    val baseExp: String?
 ) : Raw<PokemonSafe> {
 
     override fun asSafe() = PokemonSafe(
@@ -27,7 +29,7 @@ class PokemonRaw(
         attack = attack,
         defense = defense,
         speed = speed,
-        base_exp = base_exp.orEmpty()
+        baseExp = baseExp.orEmpty()
     )
 
 }

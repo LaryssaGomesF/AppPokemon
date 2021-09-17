@@ -26,6 +26,10 @@
             android:defaultValue=""
             app:argType="string" />
         <argument
+            android:name="url"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
             android:name="colorlight"
             app:argType="integer" />
         <argument

@@ -23,7 +23,7 @@ val modules = module {
     }
     single { get<PokemonsDataBase>().pokemonDao() }
     single {
-        Room.databaseBuilder(get(), PokemonsDataBase::class.java, "pokemons_db")
+        Room.databaseBuilder(get(), PokemonsDataBase::class.java, "Pokemon_ROOM")
             .fallbackToDestructiveMigration().build()
     }
 

@@ -5,8 +5,6 @@ import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -18,6 +16,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class DetailsFragment : Fragment() {
     lateinit var id: String
+    lateinit var url: String
     var colorlight: Int? = null
     var colordark: Int?= null
     private val detailsViewModel by viewModel<DetailsFragmentViewModel>()
@@ -42,6 +41,7 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val safeArgs: DetailsFragmentArgs by navArgs()
         id = safeArgs.id
+        url = safeArgs.url
         colorlight = safeArgs.colorlight
         colordark = safeArgs.colordark
         ViewCompat.setTransitionName(view?.findViewById(R.id.image_pokemon), "image${id}")
@@ -51,7 +51,6 @@ class DetailsFragment : Fragment() {
 
     private fun setLayout() {
         detailsViewModel.fetchPokemon(id)
-        val url = "https://pokeres.bastionbot.org/images/pokemon/" + id + ".png"
         Picasso.get().load(url).into(binding.imagePokemon)
         colordark?.let { binding.backgroundInfo.background.setTint(it) }
         colorlight?.let { binding.backgroundFragment.background?.setTint(it) }

@@ -5,22 +5,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokemon.data.local.PokemonEntity
 import com.example.pokemon.data.remote.repository.PokemonRepositoryRemote
+import com.example.pokemon.data.remote.repository.PokemonRepositoryRemoteImp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DetailsFragmentViewModel(val repositoryPokemon: PokemonRepositoryRemote): ViewModel() {
+class DetailsFragmentViewModel(val repositoryPokemon: PokemonRepositoryRemoteImp): ViewModel() {
 
      val pokemon: MutableLiveData<PokemonEntity> = MutableLiveData()
 
 
      fun fetchPokemon(id: String){
         viewModelScope.launch(Dispatchers.IO) {
-//            repository.fetchPokemonInfo(id)
-//                .catch{
-//
-//                }.collect {
-//                    pokemon.postValue(it)
-//                }
+
         }
     }
 }

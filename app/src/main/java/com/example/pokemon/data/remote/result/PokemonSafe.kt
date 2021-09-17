@@ -13,5 +13,5 @@ class PokemonSafe(
     val attack: Int,
     val defense: Int,
     val speed: Int,
-    val base_exp: String
+    val baseExp: String
 )

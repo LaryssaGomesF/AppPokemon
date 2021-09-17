@@ -6,29 +6,29 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 
-@Entity(tableName = "pokemons")
+@Entity(tableName = "Pokemon")
 class PokemonEntity(
-    @SerializedName("name")
     @PrimaryKey
     var name: String,
 
-    @SerializedName("id")
-    @ColumnInfo(name = "id") var id: Int,
+    @ColumnInfo(name = "id") var id: String,
 
-    @SerializedName("height")
-    @ColumnInfo(name = "height") var height: Int,
+    @ColumnInfo(name = "imageurl") var imageurl: String,
 
-    @SerializedName("weight")
-    @ColumnInfo(name = "weight") var weight: Int,
+    @ColumnInfo(name = "height") var height: String,
 
-    @SerializedName("base_experience")
-    @ColumnInfo(name = "base_experience") var base_experience: Int
-)
+    @ColumnInfo(name = "weight") var weight: String,
 
-@Entity(tableName = "pokemonsname")
-class PokemonNameEntity(
-    @PrimaryKey
-    var name: String,
-    @ColumnInfo(name = "url") var url: String
+    @ColumnInfo(name = "category") var category: String,
+
+    @ColumnInfo(name = "hp") var hp: Int,
+
+    @ColumnInfo(name = "attack") var attack: Int,
+
+    @ColumnInfo(name = "defense") var defense: Int,
+
+    @ColumnInfo(name = "speed") var speed: Int,
+
+    @ColumnInfo(name = "baseExp") var baseExp: String
 )
 

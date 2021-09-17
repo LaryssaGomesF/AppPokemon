@@ -50,7 +50,7 @@ class PokemonHolder(val binding: ItemRecyclerBinding) : RecyclerView.ViewHolder(
 
     fun bind(pokemon: PokemonSafe) {
         binding.pokemon = pokemon
-        val id = pokemon.id.toString()
+        val id = pokemon.id
         val url = pokemon.imageurl
         val image = binding.imagePokemon
         Picasso.get().load(url).into(image, object : Callback {
@@ -67,7 +67,7 @@ class PokemonHolder(val binding: ItemRecyclerBinding) : RecyclerView.ViewHolder(
                 colorlight?.let { colorlight ->
                     colordark?.let { colordark ->
                         ListFragmentDirections.infoAction(
-                            id, colorlight,
+                            id,url, colorlight,
                             colordark
                         )
                     }
