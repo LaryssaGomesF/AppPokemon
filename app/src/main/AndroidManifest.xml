@@ -23,6 +23,10 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
 
         </activity>
+        <activity android:name=".ui.view.ErrorActivity"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

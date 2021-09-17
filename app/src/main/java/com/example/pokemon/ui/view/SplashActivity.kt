@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.pokemon.R
+import com.example.pokemon.extensions.executeDelay
 import com.example.pokemon.ui.viewmodel.SplashViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -24,7 +25,11 @@ class SplashActivity : AppCompatActivity() {
             finish()
         })
         splashViewModel.errorConnection.observe(this, Observer {
-            //Tela de Error
+            executeDelay(2000L) {
+                startActivity(Intent(this, ErrorActivity::class.java))
+                finish()
+            }
+
         })
         splashViewModel.successDatabase.observe(this, Observer {
             startActivity(Intent(this, MainActivity::class.java))

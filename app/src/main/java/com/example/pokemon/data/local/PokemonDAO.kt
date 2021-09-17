@@ -11,7 +11,7 @@ interface PokemonDAO {
     suspend fun add(entities: List<PokemonEntity>)
 
     @Query("SELECT * FROM Pokemon")
-    fun getAll(): LiveData<List<PokemonEntity>>
+    fun getAll(): List<PokemonEntity>
 
     @Query("SELECT * FROM Pokemon WHERE id in (:id)")
     fun getpokemon(id: String): PokemonEntity

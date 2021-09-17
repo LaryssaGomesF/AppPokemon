@@ -1,11 +1,14 @@
 package com.example.pokemon.ui.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.pokemon.AppConnection
 import com.example.pokemon.data.local.PokemonsDataBase
 import com.example.pokemon.data.local.asListPokemonEntity
+import com.example.pokemon.data.local.asListPokemonSafe
 import com.example.pokemon.data.remote.repository.PokemonRepositoryImp
 import com.example.pokemon.data.remote.result.PokemonSafe
 import kotlinx.coroutines.Dispatchers
@@ -28,7 +31,7 @@ class ListFragmentViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             repositoryPokemon.getPokemon()
                 .catch {
-                   mErrorListPokemon.postValue(false)
+                    mErrorListPokemon.postValue(false)
                 }.collect {
                     mSuccessListPokemon.postValue(it)
                     repositoryLocal.pokemonDao().add(it.asListPokemonEntity())
@@ -36,5 +39,17 @@ class ListFragmentViewModel(
         }
     }
 
+    fun checkConnection(context: Context) {
+
+        if (AppConnection.isOnline(context)) {
+            fetchPokemons()
+        } else {
+            viewModelScope.launch(Dispatchers.IO) {
+                val list = repositoryLocal.pokemonDao().getAll().asListPokemonSafe()
+                mSuccessListPokemon.postValue(list)
+            }
+        }
+
+    }
 
 }

@@ -7,4 +7,7 @@
     <string name="speed">Velocidade</string>
     <string name="atacck">Ataque</string>
     <string name="defense">Defesa</string>
+    <string name="connection_error">Falha na conexão</string>
+    <string name="error_connection_description">Verifique sua internet e Tente novamente</string>
+    <string name="try_again">Tentar Novamente</string>
 </resources>
