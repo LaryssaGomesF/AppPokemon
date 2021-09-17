@@ -4,11 +4,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pokemon.data.local.PokemonEntity
-import com.example.pokemon.data.repository.PokemonRepositoryImp
+import com.example.pokemon.data.repository.PokemonRepositoryRemote
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class DetailsFragmentViewModel(val repository: PokemonRepositoryImp): ViewModel() {
+class DetailsFragmentViewModel(val repositoryPokemon: PokemonRepositoryRemote): ViewModel() {
 
      val pokemon: MutableLiveData<PokemonEntity> = MutableLiveData()
 

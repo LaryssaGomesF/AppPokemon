@@ -14,13 +14,15 @@ import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemon.R
 import com.example.pokemon.data.local.PokemonEntity
+import com.example.pokemon.data.remote.PokemonRaw
+import com.example.pokemon.data.remote.PokemonSafe
 import com.example.pokemon.databinding.ItemRecyclerBinding
 import com.example.pokemon.ui.view.ListFragmentDirections
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
 
-class PokemonListAdapter(var list: List<PokemonEntity>) : RecyclerView.Adapter<PokemonHolder>() {
+class PokemonListAdapter(var list: List<PokemonSafe>) : RecyclerView.Adapter<PokemonHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonHolder {
         return PokemonHolder(
             DataBindingUtil.inflate(
@@ -48,32 +50,37 @@ class PokemonHolder(val binding: ItemRecyclerBinding) : RecyclerView.ViewHolder(
     var colorlight: Int? = R.color.primary_color_light
     var colordark: Int? = R.color.dark_color_thema
 
-    fun bind(pokemon: PokemonEntity) {
+    fun bind(pokemon: PokemonSafe) {
         binding.pokemon = pokemon
         val id = pokemon.id.toString()
-        val url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}}.png"
+        val url = pokemon.imageurl
         val image = binding.imagePokemon
         Picasso.get().load(url).into(image, object : Callback {
             override fun onSuccess() {
                 loadPalette()
             }
+
             override fun onError(e: Exception?) {
             }
         })
 
         binding.root.setOnClickListener {
             val direction =
-                colorlight?.let { colorlight -> colordark?.let { colordark ->
-                    ListFragmentDirections.infoAction(id, colorlight,
-                        colordark
-                    )
-                } }
+                colorlight?.let { colorlight ->
+                    colordark?.let { colordark ->
+                        ListFragmentDirections.infoAction(
+                            id, colorlight,
+                            colordark
+                        )
+                    }
+                }
             ViewCompat.setTransitionName(it, "image${id}")
             val extras = FragmentNavigatorExtras(itemView to "image${id}")
             direction?.let { it1 -> it.findNavController().navigate(it1, extras) }
         }
 
     }
+
     private fun loadPalette() {
         val drawable: BitmapDrawable = binding.imagePokemon.drawable as BitmapDrawable
         val bitMap: Bitmap = drawable.bitmap

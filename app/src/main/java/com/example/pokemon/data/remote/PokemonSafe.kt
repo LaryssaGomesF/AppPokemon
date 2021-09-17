@@ -14,8 +14,4 @@ class PokemonSafe(
     val defense: Int,
     val speed: Int,
     val base_exp: String
-) : Raw<PokemonRaw> {
-    override fun asSafe(): PokemonRaw {
-        TODO("Not yet implemented")
-    }
-}
+)

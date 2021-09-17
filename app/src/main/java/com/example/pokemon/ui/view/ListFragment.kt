@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pokemon.R
 import com.example.pokemon.data.local.PokemonEntity
 import com.example.pokemon.data.local.asDomainModelList
+import com.example.pokemon.data.remote.PokemonRaw
+import com.example.pokemon.data.remote.PokemonSafe
 import com.example.pokemon.databinding.FragmentDetailsBinding
 import com.example.pokemon.databinding.FragmentListBinding
 import com.example.pokemon.domain.model.PokemonModel
@@ -43,7 +45,7 @@ class ListFragment : Fragment() {
         observe()
     }
 
-    private fun setRecycler(list: List<PokemonEntity>) {
+    private fun setRecycler(list: List<PokemonSafe>) {
         val layout =
             GridLayoutManager(requireContext(), 2)
         binding.recycler.apply {
@@ -54,7 +56,7 @@ class ListFragment : Fragment() {
     }
 
     private fun observe() {
-        ListViewModel.list.observe(requireActivity(), Observer {
+        ListViewModel.successListPokemon.observe(viewLifecycleOwner, Observer {
             setRecycler(it)
         })
     }

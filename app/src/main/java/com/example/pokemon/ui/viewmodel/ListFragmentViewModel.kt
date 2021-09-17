@@ -1,21 +1,35 @@
 package com.example.pokemon.ui.viewmodel
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pokemon.data.local.PokemonEntity
-import com.example.pokemon.data.local.PokemonsDataBase
-import com.example.pokemon.data.repository.PokemonRepositoryImp
+import com.example.pokemon.data.remote.PokemonRaw
+import com.example.pokemon.data.remote.PokemonSafe
+import com.example.pokemon.data.repository.PokemonRepositoryRemoteImp
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
-class ListFragmentViewModel(val pokemonRepository: PokemonRepositoryImp, pokemoRoom: PokemonsDataBase) : ViewModel() {
+class ListFragmentViewModel(
+    var repositoryPokemon: PokemonRepositoryRemoteImp
+) : ViewModel() {
 
-    var list: LiveData<List<PokemonEntity>> = pokemoRoom.pokemonDao().getAll()
+    private var mSuccessListPokemon: MutableLiveData<List<PokemonSafe>> = MutableLiveData()
+    var successListPokemon: LiveData<List<PokemonSafe>> = mSuccessListPokemon
+
+    private var mErrorListPokemon: MutableLiveData<Boolean> = MutableLiveData()
+    var errorListPokemon: LiveData<Boolean> = mErrorListPokemon
 
     fun fetchPokemons() {
         viewModelScope.launch(Dispatchers.IO) {
-           // repository.getPokemon()
+            repositoryPokemon.getPokemon()
+                .catch {
+                    it.message
+                }.collect {
+                    mSuccessListPokemon.postValue(it)
+                }
         }
     }
 

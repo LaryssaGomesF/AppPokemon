@@ -1,21 +1,16 @@
 package com.example.pokemon.data.repository
 
-import com.example.pokemon.data.remote.PokemonRaw
-import com.example.pokemon.data.remote.service.PokemonService
+import com.example.pokemon.data.remote.PokemonSafe
+import com.example.pokemon.data.remote.result.PokemonServiceImp
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
 
 
-class PokemonRepositoryRemoteImp(val PokemonService: PokemonService): PokemonRepositoryRemote  {
+class PokemonRepositoryRemoteImp(val pokemonService: PokemonServiceImp) : PokemonRepositoryRemote {
 
-   override fun getPokemon(): Flow<List<PokemonRaw>> {
-        return flow {
-            try {
-
-            } catch (e: Exception) {
-                throw Exception(e.message)
-            }
+    override suspend fun getPokemon(): Flow<List<PokemonSafe>> =
+        pokemonService.getPokemonList().map { list ->
+            list.map { it.asSafe() }
         }
-    }
 
 }
