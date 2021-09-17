@@ -11,6 +11,6 @@ Technologies such as:
 <img scr:="https://github.com/LaryssaGomesF/AppPokemon/blob/feature/%232/app/src/main/res/drawable/screenshot_main.jpeg" width=250 height=400/>
 
 ![Alt text]( =250x250)
-![Alt text](https://github.com/LaryssaGomesF/AppPokemon/blob/feature/%232/app/src/main/res/drawable/screenshot_detail.jpeg "Screenshot Detail")
+![Alt text](https://github.com/LaryssaGomesF/AppPokemon/blob/feature/%232/app/src/main/res/drawable/screenshot_detail.jpeg "Screenshot Detail"){ width=50% }
 
 
