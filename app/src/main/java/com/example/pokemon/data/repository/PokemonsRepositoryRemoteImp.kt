@@ -1,38 +1,21 @@
 package com.example.pokemon.data.repository
 
-import com.example.pokemon.data.local.PokemonEntity
-import com.example.pokemon.data.remote.result.ListPokemonResult
-import com.example.pokemon.data.remote.service.ListPokemonService
-import com.example.pokemon.data.remote.service.PokemonInfoService
-import com.example.pokemon.domain.model.PokemonModel
+import com.example.pokemon.data.remote.PokemonRaw
+import com.example.pokemon.data.remote.service.PokemonService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 
-class PokemonsRepositoryRemoteImp(val service: ListPokemonService, val serviceinfo: PokemonInfoService)  {
+class PokemonRepositoryRemoteImp(val PokemonService: PokemonService): PokemonRepositoryRemote  {
 
-   fun fetchPokemons(): Flow<ListPokemonResult> {
+   override fun getPokemon(): Flow<List<PokemonRaw>> {
         return flow {
             try {
-                val result = service.list()
-                emit(result)
+
             } catch (e: Exception) {
                 throw Exception(e.message)
             }
         }
     }
 
-    fun fetchPokemonsInfo(listname: List<PokemonModel>): Flow<PokemonEntity> {
-        return flow {
-            try {
-                for (i in listname){
-                    val result = serviceinfo.fetchPokemonInfo(i.name)
-                    emit(result)
-                }
-
-            } catch (e: Exception) {
-                throw Exception(e.message)
-            }
-        }
-    }
 }

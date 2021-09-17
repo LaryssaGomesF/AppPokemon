@@ -7,10 +7,10 @@ import com.example.pokemon.domain.model.PokemonModel
 @Dao
 interface PokemonDAO {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun add(entities: PokemonEntity)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addname(entities: List<PokemonNameEntity>)
 
     @Query("SELECT * FROM pokemons")

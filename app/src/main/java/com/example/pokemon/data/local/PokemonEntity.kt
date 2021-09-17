@@ -21,7 +21,7 @@ class PokemonEntity(
     @SerializedName("weight")
     @ColumnInfo(name = "weight") var weight: Int,
 
-    @SerializedName("height")
+    @SerializedName("base_experience")
     @ColumnInfo(name = "base_experience") var base_experience: Int
 )
 

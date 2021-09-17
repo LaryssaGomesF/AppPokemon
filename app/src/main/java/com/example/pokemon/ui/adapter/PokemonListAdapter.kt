@@ -43,30 +43,29 @@ class PokemonListAdapter(var list: List<PokemonEntity>) : RecyclerView.Adapter<P
 
 }
 
+
 class PokemonHolder(val binding: ItemRecyclerBinding) : RecyclerView.ViewHolder(binding.root) {
-    var colorlight: Int? = null
-    var colordark: Int? = null
+    var colorlight: Int? = R.color.primary_color_light
+    var colordark: Int? = R.color.dark_color_thema
 
     fun bind(pokemon: PokemonEntity) {
         binding.pokemon = pokemon
         val id = pokemon.id.toString()
-        val url = "https://pokeres.bastionbot.org/images/pokemon/" + id + ".png"
-
-        Picasso.get().load(url).into(binding.imagePokemon, object : Callback {
+        val url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}}.png"
+        val image = binding.imagePokemon
+        Picasso.get().load(url).into(image, object : Callback {
             override fun onSuccess() {
                 loadPalette()
             }
-
             override fun onError(e: Exception?) {
             }
         })
 
         binding.root.setOnClickListener {
-
             val direction =
-                colorlight?.let { it1 -> colordark?.let { it2 ->
-                    ListFragmentDirections.infoAction(id, it1,
-                        it2
+                colorlight?.let { colorlight -> colordark?.let { colordark ->
+                    ListFragmentDirections.infoAction(id, colorlight,
+                        colordark
                     )
                 } }
             ViewCompat.setTransitionName(it, "image${id}")
@@ -79,86 +78,22 @@ class PokemonHolder(val binding: ItemRecyclerBinding) : RecyclerView.ViewHolder(
         val drawable: BitmapDrawable = binding.imagePokemon.drawable as BitmapDrawable
         val bitMap: Bitmap = drawable.bitmap
         val builder = Palette.Builder(bitMap)
-        builder.generate(object : Palette.PaletteAsyncListener {
-            override fun onGenerated(palette: Palette?) {
-                var lightMuted: Palette.Swatch? = palette?.lightMutedSwatch
-                var muted: Palette.Swatch? = palette?.mutedSwatch
-                colorlight = lightMuted?.rgb
-                colordark = muted?.rgb
-                if (lightMuted != null) {
-                    binding.background.background.setTint(lightMuted.rgb)
-                    binding.namePokemon.setTextColor(lightMuted.titleTextColor)
-                } else if (muted != null) {
-                    binding.apply {
-                        background.background.setTint(muted.rgb)
-                        namePokemon.setTextColor(muted.titleTextColor)
-                    }
+        builder.generate { palette ->
+            val lightMuted: Palette.Swatch? = palette?.lightMutedSwatch
+            val muted: Palette.Swatch? = palette?.mutedSwatch
 
+            if (lightMuted != null) {
+                binding.background.background.setTint(lightMuted.rgb)
+                binding.namePokemon.setTextColor(lightMuted.titleTextColor)
+                colorlight = lightMuted.rgb
+            } else if (muted != null) {
+                binding.apply {
+                    background.background.setTint(muted.rgb)
+                    namePokemon.setTextColor(muted.titleTextColor)
+                    colordark = muted.rgb
                 }
 
             }
-        })
+        }
     }
 }
-
-
-//class PokemonHolder(binding: FragmentListBinding) : RecyclerView.ViewHolder(binding.root) {
-//    var image: ImageView = itemView.findViewById(R.id.image_pokemon)
-//    var name: TextView = itemView.findViewById(R.id.name_pokemon)
-//    var background:ConstraintLayout = itemView.findViewById(R.id.background)
-//    var colorlight: Int? = null
-//    var colordark: Int? = null
-//    val binding = binding
-//
-//    fun bind(pokemon: PokemonEntity) {
-//        binding.root.id
-//        val id = pokemon.id.toString()
-//        val url = "https://pokeres.bastionbot.org/images/pokemon/" + id + ".png"
-//        name.text = pokemon.name
-//        val image = image
-//        Picasso.get().load(url).into(image, object : Callback {
-//            override fun onSuccess() {
-//                loadPalette()
-//            }
-//
-//            override fun onError(e: Exception?) {
-//            }
-//        })
-//        itemView.setOnClickListener {
-//            val id = pokemon.id.toString()
-//            val direction =
-//                colorlight?.let { it1 -> colordark?.let { it2 ->
-//                    ListFragmentDirections.infoAction(id, it1,
-//                        it2
-//                    )
-//                } }
-//            ViewCompat.setTransitionName(it, "image${pokemon.id}")
-//            val extras = FragmentNavigatorExtras(itemView to "image${pokemon.id}")
-//            direction?.let { it1 -> it.findNavController().navigate(it1, extras) }
-//        }
-//    }
-//
-//
-//
-//    private fun loadPalette() {
-//        val drawable: BitmapDrawable = image.drawable as BitmapDrawable
-//        val bitMap: Bitmap = drawable.bitmap
-//        val builder = Palette.Builder(bitMap)
-//        builder.generate(object : Palette.PaletteAsyncListener {
-//            override fun onGenerated(palette: Palette?) {
-//                var lightMuted: Palette.Swatch? = palette?.lightMutedSwatch
-//                var muted: Palette.Swatch? = palette?.mutedSwatch
-//                colorlight = lightMuted?.rgb
-//                colordark = muted?.rgb
-//                if (lightMuted != null) {
-//                    background?.background.setTint(lightMuted.rgb)
-//                    name.setTextColor(lightMuted.titleTextColor)
-//                } else if (muted != null) {
-//                    background?.background.setTint(muted.rgb)
-//                    name.setTextColor(muted.titleTextColor)
-//                }
-//
-//            }
-//        })
-//    }
-//}

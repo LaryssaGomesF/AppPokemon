@@ -9,13 +9,13 @@ import com.example.pokemon.data.repository.PokemonRepositoryImp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ListFragmentViewModel(val repository: PokemonRepositoryImp, dataBase: PokemonsDataBase) : ViewModel() {
+class ListFragmentViewModel(val pokemonRepository: PokemonRepositoryImp, pokemoRoom: PokemonsDataBase) : ViewModel() {
 
-    var list: LiveData<List<PokemonEntity>> = dataBase.pokemonDao().getAll()
+    var list: LiveData<List<PokemonEntity>> = pokemoRoom.pokemonDao().getAll()
 
     fun fetchPokemons() {
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getPokemon()
+           // repository.getPokemon()
         }
     }
 
