@@ -5,5 +5,5 @@ import retrofit2.http.GET
 interface PokemonApi {
 
     @GET("pokemon.json")
-    fun getPokemonList(): List<PokemonRaw>
+    suspend fun getPokemonList(): List<PokemonRaw>
 }
