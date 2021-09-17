@@ -6,4 +6,4 @@ Technologies such as:
 - Koin for dependency injection
 - Corroutines flow for the request
 - Jetpack's Navigation is used for animation between the pokemon list screen and details of each pokemon
-- other technologies.
+- Room.
