@@ -9,8 +9,9 @@ Technologies such as:
 - Room.
 
 
-
-![image](https://github.com/LaryssaGomesF/AppPokemon/blob/feature/%232/app/src/main/res/drawable/main.jpeg "Screenshot Main")
-![image](https://github.com/LaryssaGomesF/AppPokemon/blob/feature/%232/app/src/main/res/drawable/detail.jpeg.jpeg "Screenshot Detail")
+## AppPokemon - Main
+![image](https://github.com/LaryssaGomesF/AppPokemon/blob/feature/%232/app/src/main/res/drawable/main_screenshot.jpeg "Screenshot Main")
+## AppPokemon - Detail
+![image](https://github.com/LaryssaGomesF/AppPokemon/blob/feature/%232/app/src/main/res/drawable/detail_screenshot.jpeg "Screenshot Detail")
 
 
