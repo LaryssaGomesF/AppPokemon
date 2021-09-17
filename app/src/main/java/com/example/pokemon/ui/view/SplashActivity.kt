@@ -14,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        splashViewModel.checkConnection()
+        splashViewModel.checkDataBase()
         observe()
     }
 
@@ -22,6 +22,17 @@ class SplashActivity : AppCompatActivity() {
         splashViewModel.successConnection.observe(this, Observer {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
+        })
+        splashViewModel.errorConnection.observe(this, Observer {
+            //Tela de Error
+        })
+        splashViewModel.successDatabase.observe(this, Observer {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        })
+
+        splashViewModel.errorDatabase.observe(this, Observer {
+            splashViewModel.checkConnection(this)
         })
     }
 }
